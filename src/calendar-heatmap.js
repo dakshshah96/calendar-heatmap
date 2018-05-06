@@ -8,8 +8,8 @@ function calendarHeatmap() {
   var SQUARE_LENGTH = 11;
   var SQUARE_PADDING = 2;
   var MONTH_LABEL_PADDING = 6;
-  var now = moment().endOf('day').toDate();
-  var yearAgo = moment().startOf('day').subtract(1, 'year').toDate();
+  var now = dayjs().endOf('day').toDate();
+  var yearAgo = dayjs().startOf('day').subtract(1, 'year').toDate();
   var startDate = null;
   var counterMap= {};
   var data = [];
@@ -38,7 +38,7 @@ function calendarHeatmap() {
     counterMap= {};
 
     data.forEach(function (element, index) {
-        var key= moment(element.date).format( 'YYYY-MM-DD' );
+        var key= dayjs(element.date).format( 'YYYY-MM-DD' );
         var counter= counterMap[key] || 0;
         counterMap[key]= counter + element.count;
     });
@@ -61,7 +61,7 @@ function calendarHeatmap() {
   chart.startDate = function (value) {
     if (!arguments.length) { return startDate; }
     yearAgo = value;
-    now = moment(value).endOf('day').add(1, 'year').toDate();
+    now = dayjs(value).endOf('day').add(1, 'year').toDate();
     return chart;
   };
 
@@ -106,8 +106,8 @@ function calendarHeatmap() {
     d3.select(chart.selector()).selectAll('svg.calendar-heatmap').remove(); // remove the existing chart, if it exists
 
     var dateRange = ((d3.time && d3.time.days) || d3.timeDays)(yearAgo, now); // generates an array of date objects within the specified range
-    var monthRange = ((d3.time && d3.time.months) || d3.timeMonths)(moment(yearAgo).startOf('month').toDate(), now); // it ignores the first month if the 1st date is after the start of the month
-    var firstDate = moment(dateRange[0]);
+    var monthRange = ((d3.time && d3.time.months) || d3.timeMonths)(dayjs(yearAgo).startOf('month').toDate(), now); // it ignores the first month if the 1st date is after the start of the month
+    var firstDate = dayjs(dateRange[0]);
     if (chart.data().length == 0) {
       max = 0;
     } else if (max === null) {
@@ -142,7 +142,7 @@ function calendarHeatmap() {
         .attr('height', SQUARE_LENGTH)
         .attr('fill', function(d) { return color(countForDate(d)); })
         .attr('x', function (d, i) {
-          var cellDate = moment(d);
+          var cellDate = dayjs(d);
           var result = cellDate.week() - firstDate.week() + (firstDate.weeksInYear() * (cellDate.weekYear() - firstDate.weekYear()));
           return result * (SQUARE_LENGTH + SQUARE_PADDING);
         })
@@ -216,7 +216,7 @@ function calendarHeatmap() {
             var matchIndex = 0;
             dateRange.find(function (element, index) {
               matchIndex = index;
-              return moment(d).isSame(element, 'month') && moment(d).isSame(element, 'year');
+              return dayjs(d).isSame(element, 'month') && dayjs(d).isSame(element, 'year');
             });
 
             return Math.floor(matchIndex / 7) * (SQUARE_LENGTH + SQUARE_PADDING);
@@ -252,13 +252,13 @@ function calendarHeatmap() {
     }
 
     function tooltipHTMLForDate(d) {
-      var dateStr = moment(d).format('ddd, MMM Do YYYY');
+      var dateStr = dayjs(d).format('dddd, MMM D YYYY');
       var count = countForDate(d);
       return '<span><strong>' + (count ? count : locale.No) + ' ' + pluralizedTooltipUnit(count) + '</strong> ' + locale.on + ' ' + dateStr + '</span>';
     }
 
     function countForDate(d) {
-        var key= moment(d).format( 'YYYY-MM-DD' );
+        var key= dayjs(d).format( 'YYYY-MM-DD' );
         return counterMap[key] || 0;
     }
 
