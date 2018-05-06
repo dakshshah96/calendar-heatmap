@@ -1,5 +1,5 @@
 # D3 Calendar Heatmap
-A [d3.js](https://d3js.org/) heatmap representing time series data. Inspired by Github's contribution chart
+A fork of calendar-heatmap for GitHub-like time series data representation by @DKirwan using dayjs instead of moment.js
 
 ![Reusable D3.js Calendar Heatmap chart](https://raw.githubusercontent.com/DKirwan/calendar-heatmap/develop/example/thumbnail.png)
 
@@ -34,11 +34,11 @@ A [d3.js](https://d3js.org/) heatmap representing time series data. Inspired by 
 ## Dependencies
 
 * [d3.js](https://d3js.org/)
-* [moment.js](http://momentjs.com/)
+* [dayjs](https://github.com/xx45/dayjs)
 
 ## Usage
 
-1: Add d3.js and moment.js
+1: Add d3.js and dayjs
 
 2: Include calendar-heatmap.js and calendar-heatmap.css
 `<link rel="stylesheet" type="text/css" href="path/tocalendar-heatmap.css">`
