@@ -1,15 +1,16 @@
 {
   "name": "calendar-heatmap",
   "version": "0.4.1",
-  "homepage": "https://github.com/DKirwan/calendar-heatmap",
-  "description": "A d3.js heatmap representing time series data. Inspired by Github's contribution chart",
+  "homepage": "https://github.com/dakshshah96/calendar-heatmap",
+  "description": "A fork of calendar-heatmap for GitHub-like time series data representation by @DKirwan using dayjs instead of moment.js",
   "authors": [
     "Darragh Kirwan <d@rragh.com>",
-    "Oskar Niburski <oskarniburski@gmail.com>"
+    "Oskar Niburski <oskarniburski@gmail.com>",
+    "Daksh Shah <dakshshah96@gmail.com>"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/DKirwan/calendar-heatmap.git"
+    "url": "git://github.com/dakshshah96/calendar-heatmap.git"
   },
   "main": [
     "src/calendar-heatmap.js",
@@ -17,11 +18,11 @@
   ],
   "dependencies": {
     "d3": "3.5.x",
-    "moment": "2.11.x"
+    "dayjs": "1.5.x"
   },
   "keywords": [
     "d3",
-    "moment",
+    "dayjs",
     "heatmap"
   ],
   "license": "MIT",
